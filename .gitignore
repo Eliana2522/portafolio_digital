@@ -1,0 +1,15 @@
+# Environments
+env/
+venv/
+*.env
+
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+media/
+
+# Ruff
+.ruff_cache/

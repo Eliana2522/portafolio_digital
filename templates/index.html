@@ -1,0 +1,185 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio - Eliana Marmolejos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="#" data-key="web_developer">Eliana M. | Desarrolladora Web</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about" data-key="about_me">Sobre mí</a></li>
+                    <li><a href="#projects" data-key="projects">Proyectos</a></li>
+                    <li><a href="#skills" data-key="skills">Habilidades</a></li>
+                    <li><a href="#contact" data-key="contact">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="language-switcher">
+                <button id="es-btn" class="active">ES</button>
+                <button id="en-btn">EN</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <main>
+            <section id="home" class="hero">
+                <h1 data-key="hero_title">Eliana Marmolejos</h1>
+                <p class="subtitle" data-key="hero_subtitle">Soy una desarrolladora Fullstack con experiencia en Django y diseño Frontend moderno. Me gusta crear sitios web completos, funcionales y visualmente atractivos, cuidando cada detalle desde la lógica hasta la experiencia del usuario.</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary" data-key="my_projects">Mis Proyectos</a>
+                    <a href="#contact" class="btn btn-secondary" data-key="contact_me">Contáctame</a>
+                </div>
+            </section>
+
+            <section id="about">
+                <h2 class="section-title" data-key="about_me_title">Sobre Mí</h2>
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="{% static 'images/profile.jpg' %}" alt="Foto de perfil">
+                    </div>
+                    <div class="about-text">
+                        <p class="about-intro" data-key="about_intro">
+                            Desde joven, me ha fascinado descubrir qué hay detrás de la tecnología y cómo funcionan los programas que usamos a diario. Esta pasión me llevó a estudiar Informática Gerencial y a desarrollar, durante más de un año, una carrera técnica en diseño y creación de software.
+                        </p>
+                        <div class="about-values">
+                            <div class="value-card">
+                                <h3><i class="fas fa-lightbulb"></i> <span data-key="creativity">Creatividad</span></h3>
+                                <p data-key="creativity_text">Transformo ideas en experiencias digitales que conecten con las personas.</p>
+                            </div>
+                            <div class="value-card">
+                                <h3><i class="fas fa-puzzle-piece"></i> <span data-key="elegant_solutions">Soluciones Elegantes</span></h3>
+                                <p data-key="elegant_solutions_text">Busco soluciones elegantes, prácticas y útiles para cada desafío.</p>
+                            </div>
+                            <div class="value-card">
+                                <h3><i class="fas fa-rocket"></i> <span data-key="continuous_learning">Aprendizaje Continuo</span></h3>
+                                <p data-key="continuous_learning_text">Exploro cada proyecto como una oportunidad de aprender y crear algo nuevo.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects">
+                <h2 class="section-title" data-key="projects_title">Proyectos</h2>
+                <div class="projects-list">
+                    {% for project in projects %}
+                    <div class="project-item">
+                        <div class="project-image">
+                            {% if project.image %}
+                            <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                            {% endif %}
+                        </div>
+                        <div class="project-description">
+                            <h3 data-key="project_title_{{ project.id }}">{{ project.title }}</h3>
+                            <p data-key="project_description_{{ project.id }}">{{ project.description }}</p>
+                            <div class="project-links">
+                                {% if project.demo_link %}
+                                <a href="{{ project.demo_link }}" class="btn btn-secondary" target="_blank" data-key="view_demo">Ver Demo</a>
+                                {% endif %}
+                                {% if project.source_link %}
+                                <a href="{{ project.source_link }}" class="btn btn-secondary" target="_blank" data-key="source_code">Código Fuente</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <section id="skills">
+                <h2 class="section-title" data-key="skills_title">Habilidades</h2>
+                <div class="skills-grid">
+                    <div class="skill-card"><i class="fa-brands fa-html5"></i> HTML5</div>
+                    <div class="skill-card"><i class="fa-brands fa-css3-alt"></i> CSS3</div>
+                    <div class="skill-card"><i class="fa-brands fa-js"></i> JavaScript</div>
+                    <div class="skill-card"><i class="fa-brands fa-python"></i> Python</div>
+                    <div class="skill-card"><i class="fas fa-code"></i> Django</div>
+                    <div class="skill-card"><i class="fa-brands fa-github"></i> GitHub</div>
+                    <div class="skill-card"><i class="fa-solid fa-database"></i> <span data-key="database">Base de Datos</span></div>
+                    <div class="skill-card"><i class="fa-brands fa-bootstrap"></i> Bootstrap</div>
+                    <div class="skill-card"><i class="fa-brands fa-node-js"></i> Node.js</div>
+                </div>
+            </section>
+
+            <section id="contact">
+                <h2 class="section-title" data-key="contact_title">Contacto</h2>
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:tu_email@ejemplo.com">polancoeliana93@gmail.com</a>
+                    </div>
+                    <div class="info-item">
+                        <i class="fab fa-linkedin"></i>
+                        <a href="linkedin.com/in/eliana-lisbeth-marmolejos-polanco-26911b1aa" target="_blank">LinkedIn</a>
+                    </div>
+                    <div class="info-item">
+                        <i class="fab fa-instagram"></i>
+                        <a href="https://www.instagram.com/polanco_eli25?igsh=bWQxamc3dGlhdHFn" target="_blank">Instagram</a>
+                    </div>
+                </div>
+                {% if messages %}
+                <div class="messages" style="text-align: center; padding-bottom: 1em;">
+                    {% for message in messages %}
+                    <p style="color: green; font-weight: bold;">{{ message }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <form class="contact-form" method="post" action="{% url 'home' %}#contact">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ form.name }}
+                        {{ form.name.errors }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.email }}
+                        {{ form.email.errors }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.message }}
+                        {{ form.message.errors }}
+                    </div>
+                    <button type="submit" class="btn btn-primary" data-key="send_message">Enviar Mensaje</button>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <div class="social-links">
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            </div>
+            <p>&copy; 2025 Eliana Marmolejos.</p>
+        </footer>
+    </div>
+
+    <script>
+        const projects = [
+            {% for project in projects %}
+            {
+                id: {{ project.id }},
+                title: "{{ project.title }}",
+                title_en: "{{ project.title_en }}",
+                description: "{{ project.description }}",
+                description_en: "{{ project.description_en }}"
+            },
+            {% endfor %}
+        ];
+    </script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/translation.js' %}"></script>
+</body>
+</html>
