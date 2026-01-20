@@ -407,25 +407,84 @@ footer {
     color: var(--primary-color);
 }
 
+/* --- Header Controls --- */
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.mobile-menu-button {
+    display: none; /* Oculto por defecto en escritorio */
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
 /* --- Responsive --- */
 @media (max-width: 768px) {
-    header {
+    /* Muestra el botón de hamburguesa y oculta la navegación normal */
+    .mobile-menu-button {
+        display: block;
+    }
+
+    /* Oculta los links de navegación de escritorio */
+    nav {
+        display: none;
+    }
+
+    /* Estilos para el menú desplegable */
+    #nav-links.active {
+        display: block;
+        position: absolute;
+        top: 80px; /* Ajusta según la altura de tu header */
+        left: 0;
+        right: 0;
+        background-color: #121212;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+
+    #nav-links.active ul {
         flex-direction: column;
+        align-items: center;
+        padding: 2rem 0;
+        gap: 1.5rem;
     }
 
-    .logo {
-        margin-bottom: 1rem;
-    }
-
-    nav ul li {
-        margin: 0 0.8rem;
-    }
-
+    /* Ajustes generales para el resto del layout */
     .hero h1 {
         font-size: 3rem;
     }
 
     .about-content {
         flex-direction: column;
+    }
+
+    .about-image {
+        flex: 1 1 auto;
+        max-width: 200px;
+        margin: 0 auto 2rem;
+    }
+
+    .project-item {
+        flex-direction: column;
+    }
+
+    .project-image {
+        flex-basis: auto;
+        width: 100%;
+    }
+
+    .project-description {
+        flex-basis: auto;
+        padding: 1.5rem;
+    }
+
+    .contact-info {
+        flex-direction: column;
+        gap: 2rem;
     }
 }
