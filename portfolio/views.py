@@ -5,7 +5,17 @@ from .models import Project
 from .forms import ContactForm
 
 def home(request):
-    projects = Project.objects.all()
+    projects_queryset = Project.objects.all()
+    projects_for_js = []
+    for project in projects_queryset:
+        projects_for_js.append({
+            'id': project.id,
+            'title': project.title,
+            'title_en': project.title_en,
+            'description': project.description,
+            'description_en': project.description_en,
+        })
+
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -20,10 +30,15 @@ def home(request):
                 email,
                 ['tu_admin_email@ejemplo.com'], # Reemplaza con tu email
             )
-            
+
             messages.success(request, '¡Tu mensaje ha sido enviado con éxito!')
             return redirect('home')
     else:
         form = ContactForm()
 
-    return render(request, 'index.html', {'projects': projects, 'form': form})
+    context = {
+        'projects': projects_queryset,
+        'projects_for_js': projects_for_js,
+        'form': form,
+    }
+    return render(request, 'index.html', context)

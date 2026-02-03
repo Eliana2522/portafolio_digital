@@ -171,19 +171,7 @@
         </footer>
     </div>
 
-    <script>
-        const projects = [
-            {% for project in projects %}
-            {
-                id: {{ project.id }},
-                title: "{{ project.title }}",
-                title_en: "{{ project.title_en }}",
-                description: "{{ project.description }}",
-                description_en: "{{ project.description_en }}"
-            },
-            {% endfor %}
-        ];
-    </script>
+    {{ projects_for_js|json_script:"projects-data" }}
     <script src="{% static 'js/main.js' %}"></script>
     <script src="{% static 'js/translation.js' %}"></script>
 </body>

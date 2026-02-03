@@ -62,6 +62,9 @@ const translations = {
 const esBtn = document.getElementById("es-btn");
 const enBtn = document.getElementById("en-btn");
 
+const projectsDataElement = document.getElementById('projects-data');
+const projects = projectsDataElement ? JSON.parse(projectsDataElement.textContent) : [];
+
 const setLanguage = (lang) => {
     const elements = document.querySelectorAll("[data-key]");
     elements.forEach((element) => {
@@ -74,6 +77,29 @@ const setLanguage = (lang) => {
             }
         }
     });
+
+    projects.forEach(project => {
+        const titleElement = document.querySelector(`[data-key="project_title_${project.id}"]`);
+        const descriptionElement = document.querySelector(`[data-key="project_description_${project.id}"]`);
+
+        if (titleElement) {
+            if (lang === 'en' && project.title_en) {
+                titleElement.textContent = project.title_en;
+            } else {
+                titleElement.textContent = project.title;
+            }
+        }
+
+        if (descriptionElement) {
+            if (lang === 'en' && project.description_en) {
+                descriptionElement.textContent = project.description_en;
+            }
+            else {
+                descriptionElement.textContent = project.description;
+            }
+        }
+    });
+
     document.documentElement.lang = lang;
     if (lang === 'es') {
         esBtn.classList.add('active');
